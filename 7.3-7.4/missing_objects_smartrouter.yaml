@@ -1,0 +1,36 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: missing-objects
+message: |-
+          the following objects will be created:
+          
+              Service Account: ${APPLICATION_NAME}-smartrouter
+              Role Binding: ${APPLICATION_NAME}-smartrouter-view
+              
+parameters:
+- displayName: Application Name
+  description: The name for the application.
+  name: APPLICATION_NAME
+  required: true
+objects:
+- kind: ServiceAccount
+  apiVersion: v1
+  metadata:
+    name: "${APPLICATION_NAME}-smartrouter"
+    labels:
+      application: "${APPLICATION_NAME}"
+      rhpam: "1.1"
+- kind: RoleBinding
+  apiVersion: v1
+  metadata:
+     name: "${APPLICATION_NAME}-smartrouter-view"
+     labels:
+        application: "${APPLICATION_NAME}"
+        rhpam: "1.1"
+  subjects:
+  - kind: ServiceAccount
+    name: "${APPLICATION_NAME}-smartrouter"
+  roleRef:
+    name: view

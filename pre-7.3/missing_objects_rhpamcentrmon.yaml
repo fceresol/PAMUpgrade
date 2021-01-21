@@ -1,0 +1,36 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: missing-objects
+message: |-
+          the following objects will be created:
+          
+              Service Account: ${APPLICATION_NAME}-rhpamsvc
+              Role Binding: ${APPLICATION_NAME}-rhpamsvc-edit
+              
+parameters:
+- displayName: Application Name
+  description: The name for the application.
+  name: APPLICATION_NAME
+  required: true
+objects:
+- kind: ServiceAccount
+  apiVersion: v1
+  metadata:
+    name: "${APPLICATION_NAME}-rhpamsvc"
+    labels:
+      application: "${APPLICATION_NAME}"
+      rhpam: "1.1"
+- kind: RoleBinding
+  apiVersion: v1
+  metadata:
+     name: "${APPLICATION_NAME}-rhpamsvc-edit"
+     labels:
+        application: "${APPLICATION_NAME}"
+        rhpam: "1.1"
+  subjects:
+  - kind: ServiceAccount
+    name: "${APPLICATION_NAME}-rhpamsvc"
+  roleRef:
+    name: edit

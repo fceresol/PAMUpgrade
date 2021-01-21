@@ -1,0 +1,5 @@
+[
+    { "op": "add", "path": "/spec/template/spec/containers/0/env/-", "value":{"name": "KIE_SERVER_ROUTER_TLS_KEYSTORE_KEYALIAS","value": "jboss"}},
+    { "op": "add", "path": "/spec/template/spec/containers/0/env/-", "value":{"name": "KIE_SERVER_ROUTER_TLS_KEYSTORE_PASSWORD","value": "mykeystorepass"}},
+    { "op": "add", "path": "/spec/template/spec/containers/0/env/-", "value":{"name": "KIE_SERVER_ROUTER_TLS_KEYSTORE","value": "/etc/smartrouter-secret-volume/keystore.jks"}}
+]
